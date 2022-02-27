@@ -3,34 +3,54 @@
  */
 package basiclibrary;
 
-import java.util.Arrays;
-import java.util.Random;
+import java.util.*;
 
 public class Library {
     public boolean someLibraryMethod() {
         return true;
     }
 
-//    public static void main(String[] args) {
-////        int[] arr = {1,2,3,4,5};
-////        int[] res = roll(4);
-////        String str = Arrays.toString(res);
-////        System.out.println(str);
-////        System.out.println(containsDuplicates(arr));
-////        System.out.println(calculatingAverages(arr));
-////
-////        int[][] weeklyMonthTemperatures = {
-////                {66, 64, 58, 65, 71, 57, 60},
-////                {57, 65, 65, 70, 72, 65, 51},
-////                {55, 54, 60, 53, 59, 57, 61},
-////                {65, 56, 55, 52, 55, 62, 57}
-////        };
-////
-////        int[] result2= lowestAverage(weeklyMonthTemperatures);
-////        String str2 = Arrays.toString(result2);
-////        System.out.println(str2);
+    public static void main(String[] args) {
+//////        int[] arr = {1,2,3,4,5};
+//////        int[] res = roll(4);
+//////        String str = Arrays.toString(res);
+//////        System.out.println(str);
+//////        System.out.println(containsDuplicates(arr));
+//////        System.out.println(calculatingAverages(arr));
+//////
+//        int[][] weeklyMonthTemperatures = {
+//                {66, 64, 58, 65, 71, 57, 60},
+//                {57, 65, 65, 70, 72, 65, 51},
+//                {55, 54, 60, 53, 59, 57, 61},
+//                {65, 56, 55, 52, 55, 62, 57}
+//        };
 //
-//    }
+//////        int[] result2= lowestAverage(weeklyMonthTemperatures);
+//////        String str2 = Arrays.toString(result2);
+//////        System.out.println(str2);
+////
+//        ArrayList<String> temp = analyzingWeatherData(weeklyMonthTemperatures);
+//        System.out.println(temp);
+//
+
+//        ArrayList<String> votes = new ArrayList<>();
+//        votes.add("Bush");
+//        votes.add("Bush");
+//        votes.add("Bush");
+//        votes.add("Shrub");
+//        votes.add("Hedge");
+//        votes.add("Shrub");
+//        votes.add("Bush");
+//        votes.add("Hedge");
+//        votes.add("Bush");
+//
+//        String winner = tally(votes);
+//        System.out.println(winner + " received the most votes!");
+
+        int[] arr ={1,2,3,4,5,6};
+        System.out.println(binSearch(arr,4));
+
+    }
     public  static int[] roll(int n){
         int[] sides = new int[n];
         for (int i = 0; i <sides.length ; i++) {
@@ -41,6 +61,25 @@ public class Library {
         return sides;
     }
 
+    
+    public  static int binSearch(int[] arr, int num){
+        int mid,low,high,length;
+        length = arr.length;
+        high = length;
+        low = 0;
+        for (int i = low; i < high; i++) {
+            mid = (int)Math.floor((high+low)/2);
+            for (int j = low; j <mid ; j++) {
+                if(arr[j]==num)
+                    return j;
+            }
+            low = mid;
+            length = (int)Math.floor(high/2);
+
+        }
+        
+        return -1;
+    }
     public static  boolean containsDuplicates(int[] arr){
 
         for (int i = 0; i <arr.length ; i++) {
@@ -82,6 +121,60 @@ public class Library {
         }
         int[] lowAvg =arr[rowNum];
         return lowAvg;
+    }
+
+    public static ArrayList<String> analyzingWeatherData (int[][] arr){
+//        String[] temp = new String[arr[0].length];
+        ArrayList<String> temp = new ArrayList<>();
+        HashSet<Integer> octWeahther = new HashSet<>();
+        int max = 0;
+        int min = arr[0][0];
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[i].length; j++) {
+               if(arr[i][j] > max)
+                   max = arr[i][j];
+               if(arr[i][j] < min)
+                   min = arr[i][j];
+               octWeahther.add(arr[i][j]);
+            }
+        }
+        temp.add("High: "+max);
+        temp.add("Low: "+min);
+        for (int i = min; i < max; i++) {
+            if(!octWeahther.contains(i))
+                temp.add("Never saw temperature: "+i);
+        }
+
+        return temp;
+    }
+
+    public static String tally(ArrayList arr){
+        String winner="";
+        HashSet<Object> candidates= new HashSet<>();
+        for (int i = 0; i < arr.size(); i++){
+            candidates.add(arr.get(i));
+    }
+        String[] list = candidates.toArray(new String[candidates.size()]);
+        int[] res = new int[candidates.size()];
+
+        for (int i = 0; i < arr.size(); i++) {
+            for (int j = 0; j < list.length; j++) {
+                if(arr.get(i) == list[j])
+                    res[j]++;
+            }
+        }
+        int max=0;
+        int index=0;
+        for (int i = 0; i < list.length ; i++) {
+            if(res[i]>max)
+            { winner = list[i];
+            max = res[i];
+            index =i;
+            }
+
+        }
+        winner = list[index] ;
+        return winner;
     }
 
 }
