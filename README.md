@@ -1,12 +1,8 @@
-# java-fundamentals
+# Java Fundamentals
 
-## What are we doing today
+| Title  | Description                                                                           | Link                                                                         |
+|--------|---------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
+| Lab01  | Create pluralize,flipNHeads, and Clock functions                                      | [Link](https://github.com/Rnad95/java-fundamentals/tree/basics/basics)                   |
+| Lab02  | Create roll,containsDuplicates, calculatingAverages,and lowestAverage with test files | [Link](https://github.com/Rnad95/java-fundamentals/tree/basiclibrary/basiclibrary)       |
+| Lab03  | analyzingWeatherData, tally, linter function are created                              |
 
----
-analyzingWeatherData, tally, linter function are created.
-
-- analyzingWeatherData takes 2D array then find the minimum and maximum. After find the mix and min, the function find the temperature which is not find in the weather array.
-
-- tally function takes array to find the winner using Hashset and ArrayList.
-
-- linter function takes a JS file and discover the run time error for users using exceptions.  
