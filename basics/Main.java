@@ -1,6 +1,8 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
+import java.util.Date;
 
 class Main{
 
@@ -8,8 +10,8 @@ class Main{
         int animalCount = 0;
         System.out.println("I own " + animalCount + " " + pluralize("cat", animalCount) + ".");
 //        System.out.println(Math.random())
-        flipNHeads(4);
-        clock();
+        flipNHeads(3);
+//        clock();
 
     }
 
@@ -28,9 +30,10 @@ class Main{
         int count=0;
         int i=1;
         while (count != num) {
-            double rand = Math.random();
+
+            Random rand =  new Random();
             String flip="";
-            if(rand>=0.5){
+            if(rand.nextDouble() >=0.5){
                 count++;
                 System.out.println("heads");
                 if(count==num) {
@@ -39,6 +42,7 @@ class Main{
                 }
             }
             else{
+                count =0;
                 System.out.println("tails");
             }
             i++;
@@ -52,7 +56,15 @@ class Main{
         while (x==0){
             LocalDateTime now = LocalDateTime.now();
             System.out.println(now.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
-//            TimeUnit.SECONDS.sleep(1);
+            try
+            {
+                Thread.sleep(1000);
+
+            }
+            catch(InterruptedException ex)
+            {
+                ex.printStackTrace();
+            }
         }
     }
 }
