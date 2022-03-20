@@ -4,11 +4,62 @@
 package linter;
 
 import org.junit.jupiter.api.Test;
+
+import java.io.File;
+import java.util.Scanner;
+
+import static linter.App.javaScriptFile;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {
-    @Test void appHasAGreeting() {
+    @Test
+    void appHasAGreeting() {
         App classUnderTest = new App();
         assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+    }
+    @Test
+    void testReadFromEmptyfile() {
+//        String path = "emptyFile.js";
+        javaScriptFile("/home/renad/Desktop/LTUCTraining/java-fundamentals1/java-fundamentals/FixingLinter/resources/emptyFile.js");
+        File file = new File("/home/renad/Desktop/LTUCTraining/java-fundamentals1/java-fundamentals/FixingLinter/resources/emptyFile.js");
+        String expected="Empty";
+        String Actual="";
+        if(file.exists()){
+            try (Scanner sc = new Scanner(file)) {
+                if (!sc.hasNext()) {
+                    Actual="Empty";
+                }
+            }catch(Exception err){
+                System.out.println(err.getMessage());
+            }
+        }
+
+
+        assertEquals(expected,Actual);
+    }
+    @Test
+    void testFileHasOneError() {
+        String expected="Line 1: Missing semicolon.\n";
+        String Actual=javaScriptFile("/home/renad/Desktop/LTUCTraining/java-fundamentals1/java-fundamentals/FixingLinter/resources/oneError.js");
+        System.out.println(Actual);
+        assertEquals(expected,Actual);
+    }
+    @Test
+    void testFileHasfewError() {
+        String expected="Line 1: Missing semicolon.\n" +
+                "Line 4: Missing semicolon.\n" +
+                "Line 7: Missing semicolon.\n" +
+                "Line 12: Missing semicolon.\n" +
+                "Line 17: Missing semicolon.\n" +
+                "Line 20: Missing semicolon.\n" +
+                "Line 25: Missing semicolon.\n";
+        String Actual=javaScriptFile("/home/renad/Desktop/LTUCTraining/java-fundamentals1/java-fundamentals/FixingLinter/resources/fewError.js");
+        System.out.println();
+        assertEquals(expected,Actual);
+    }
+    @Test
+    void testFileHasManyError() {
+        String Actual=javaScriptFile("/home/renad/Desktop/LTUCTraining/java-fundamentals1/java-fundamentals/FixingLinter/resources/gates.js");
+        assertTrue(Actual.contains("Line 51: Missing semicolon."));
     }
 }

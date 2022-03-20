@@ -2,7 +2,7 @@ package inheritance;
 
 public class Review extends Restaurant{
 
-//    . Each Review should have a body, an author, and a number of stars.
+    //    . Each Review should have a body, an author, and a number of stars.
     String body;
     String author;
     int numOfStar;

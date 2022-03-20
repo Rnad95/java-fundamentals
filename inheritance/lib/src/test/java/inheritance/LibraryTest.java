@@ -49,4 +49,10 @@ class LibraryTest {
         assertEquals(str, Jabri.RateStar);
     }
 
+    @Test void ShopTest(){
+        Shop sh = new Shop("Alwaan","Library for School stationery","$$");
+        String expected = "Shop{name='Alwaan', description='Library for School stationery', numDollar='$$'}";
+        assertEquals(expected, sh.toString());
+    }
+
 }
