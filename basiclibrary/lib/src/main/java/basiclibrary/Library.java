@@ -60,8 +60,6 @@ public class Library {
         }
         return sides;
     }
-
-    
     public  static int binSearch(int[] arr, int num){
         int mid,low,high,length;
         length = arr.length;
@@ -91,7 +89,6 @@ public class Library {
         }
         return false;
     }
-
     public static  double calculatingAverages(int[] arr){
         int sum =0;
         double avg= 0.0f;
@@ -101,7 +98,6 @@ public class Library {
         avg = ((float)sum)/arr.length;
         return avg;
     }
-
     public static int[] lowestAverage(int[][] arr){
         int rowNum = 0;
 //        double[] avgArr = new double[arr.length];
@@ -122,7 +118,6 @@ public class Library {
         int[] lowAvg =arr[rowNum];
         return lowAvg;
     }
-
     public static ArrayList<String> analyzingWeatherData (int[][] arr){
 //        String[] temp = new String[arr[0].length];
         ArrayList<String> temp = new ArrayList<>();

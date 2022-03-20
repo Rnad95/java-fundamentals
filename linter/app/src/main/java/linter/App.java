@@ -14,7 +14,10 @@ public class App {
     }
 
     public static void main(String[] args) {
-        javaScriptFile();
+        System.out.println("Please enter your file name with the extend");
+        Scanner sn = new Scanner(System.in);
+        String path = sn.nextLine();
+        javaScriptFile(path);
 
     }
 //
@@ -37,13 +40,12 @@ public class App {
 //        return myFile;
 //    }
 //
-    public  static void javaScriptFile(){
-//        System.out.println("Please enter your file name with the extend");
-//        Scanner sn = new Scanner(System.in);
-//        String path = sn.nextLine();
-//createFile(path)+""
-        File file = new File("resources/gates.js");
+    public  static String javaScriptFile(String path){
 
+//createFile(path)+""
+        File file = new File(path);
+        //        File file = new File("resources/gates.js");
+        String str = "";
         try (Scanner sc = new Scanner(file)){
             int count=0;
 
@@ -55,8 +57,8 @@ public class App {
                         continue;
                     }
                     else {
-                        System.out.println("Line "+count+": Missing semicolon.");
-
+                        System.out.println("Line " + count + ": Missing semicolon.");
+                        str += "Line " + count + ": Missing semicolon.\n";
                     }
                }
 
@@ -64,5 +66,6 @@ public class App {
         } catch(FileNotFoundException fileNotFoundException  ){
             System.out.println(fileNotFoundException.getMessage());
         }
+     return str;
     }
 }
